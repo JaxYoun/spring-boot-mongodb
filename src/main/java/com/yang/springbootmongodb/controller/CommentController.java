@@ -1,6 +1,8 @@
 package com.yang.springbootmongodb.controller;
 
 import com.yang.springbootmongodb.entity.Comment;
+import com.yang.springbootmongodb.entity.Location;
+import com.yang.springbootmongodb.entity.User;
 import com.yang.springbootmongodb.mapper.CommentRepository;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
@@ -14,6 +16,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 import javax.annotation.Resource;
 import java.time.LocalDateTime;
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
@@ -34,6 +37,13 @@ public class CommentController {
 
     @GetMapping("/add")
     public void add() {
+        List<Location> locationList = new ArrayList() {{
+            add(Location.builder().name("中国").shortname("cn").x(100).y(200).build());
+            add(Location.builder().name("美国").shortname("us").x(111).y(222).build());
+        }};
+
+        User user = User.builder().address("中国-四川-成都").name("杨").build();
+
         Comment comment = Comment.builder()
                 .state("1")
                 .replynum(19)
@@ -44,6 +54,8 @@ public class CommentController {
                 .content("垃圾营销号")
                 .publishtime(new Date())
                 .createdatetime(LocalDateTime.now())
+                .locationList(locationList)
+                .user(user)
                 .build();
         this.commentRepository.insert(comment);
     }

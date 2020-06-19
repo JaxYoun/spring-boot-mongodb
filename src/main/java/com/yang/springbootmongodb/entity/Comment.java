@@ -10,6 +10,7 @@ import org.springframework.data.mongodb.core.mapping.Document;
 import java.io.Serializable;
 import java.time.LocalDateTime;
 import java.util.Date;
+import java.util.List;
 
 /**
  * @author: Yang
@@ -80,6 +81,13 @@ public class Comment implements Serializable {
      * 文章id
      */
     private String articleid;
+
+    /**
+     *
+     */
+    private List<Location> locationList;
+
+    private User user;
 
 
 }
