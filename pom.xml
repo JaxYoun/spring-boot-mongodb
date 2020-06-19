@@ -16,7 +16,7 @@
 
     <properties>
         <java.version>1.8</java.version>
-        <log.level>info</log.level>
+        <log.level>DEBUG</log.level>
     </properties>
 
     <dependencies>
